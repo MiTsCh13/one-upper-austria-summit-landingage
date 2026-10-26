@@ -6,5 +6,3 @@ Open `index.html` directly in a browser or serve the folder with any static host
 
 - `index.html` – page, styles and scripts (inline)
 - `assets/logo.png`, `assets/skyline.jpg` – cut from the flyer; replace with high-res originals when available
-
-Before going live: replace the placeholder contact address in the "Confirm your interest" button (`mailto:` in the `#join` section).
