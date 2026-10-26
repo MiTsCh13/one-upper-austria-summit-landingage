@@ -7,7 +7,6 @@
   <meta name="description" content="One Upper Austria Summit – the new startup and innovation summit, shaped together by Upper Austria's ecosystem. 19 March 2027, Tabakfabrik Linz.">
   <meta property="og:title" content="One Upper Austria Summit · 19 March 2027 · Tabakfabrik Linz">
   <meta property="og:description" content="Many strengths. One shared future. The new startup and innovation summit, shaped together by Upper Austria's ecosystem.">
-  <meta property="og:image" content="assets/skyline.jpg">
   <link rel="icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,17 +85,11 @@
     /* Hero */
     .hero { position: relative; overflow: hidden; padding: 72px 0 0; }
     .hero-lines { position: absolute; top: -40px; right: -80px; width: 760px; max-width: 90vw; opacity: .9; pointer-events: none; }
-    .hero-grid { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; }
+    .hero-grid { position: relative; max-width: 760px; }
     .hero h1 { font-size: clamp(44px, 7.4vw, 92px); font-weight: 800; letter-spacing: -.02em; line-height: .98; text-transform: uppercase; }
     .hero h1 .red { display: block; }
     .hero .sub { font-size: 20px; font-weight: 500; color: var(--ink); margin: 26px 0 34px; max-width: 560px; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
-    .hero-img { position: relative; }
-    .hero-img img {
-      width: 100%; border-radius: var(--radius);
-      -webkit-mask-image: radial-gradient(ellipse at 60% 50%, #000 55%, transparent 78%);
-              mask-image: radial-gradient(ellipse at 60% 50%, #000 55%, transparent 78%);
-    }
     .facts {
       position: relative; margin-top: 56px; display: grid; grid-template-columns: repeat(4, 1fr);
       border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
@@ -151,8 +144,7 @@
     /* Programme */
     .prog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 44px; }
     .tags { display: flex; flex-wrap: wrap; gap: 10px; }
-    .tag { padding: 10px 18px; border-radius: 999px; border: 1.5px solid var(--ink); font: 600 15px Poppins, sans-serif; color: var(--ink); }
-    .tag.hot { background: var(--red); border-color: var(--red); color: #fff; }
+    .tag { padding: 8px 14px 8px 12px; border-left: 3px solid var(--red); background: var(--bg-alt); font: 500 15px Poppins, sans-serif; color: var(--ink); }
     .formats { list-style: none; padding: 0; margin: 0; }
     .formats li { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
     .formats li:first-child { padding-top: 0; }
@@ -236,8 +228,7 @@
       header.nav.open .menu-btn span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
       header.nav.open .menu-btn span:nth-child(2) { opacity: 0; }
       header.nav.open .menu-btn span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-      .hero-grid, .intro-grid, .prog-grid, .venue-grid, .model, .cta-box { grid-template-columns: 1fr; }
-      .hero-img { order: -1; max-width: 520px; }
+      .intro-grid, .prog-grid, .venue-grid, .model, .cta-box { grid-template-columns: 1fr; }
       .facts { grid-template-columns: 1fr 1fr; }
       .fact:nth-child(3) { border-left: 0; }
       .fact:nth-child(n+3) { border-top: 1px solid var(--line); }
@@ -317,9 +308,6 @@
             <div class="cd"><b data-cd="m">–</b><span>Minutes</span></div>
             <div class="cd"><b data-cd="s">–</b><span>Seconds</span></div>
           </div>
-        </div>
-        <div class="hero-img">
-          <img src="assets/skyline.jpg" alt="Linz on the Danube in front of the Alps" width="349" height="140">
         </div>
       </div>
 
@@ -427,7 +415,7 @@
         <div class="reveal">
           <h3>Focus topics</h3>
           <div class="tags">
-            <span class="tag hot">AI &amp; DeepTech</span>
+            <span class="tag">AI &amp; DeepTech</span>
             <span class="tag">Funding &amp; Investment</span>
             <span class="tag">Industry meets Startups</span>
             <span class="tag">Talent &amp; Skills</span>
