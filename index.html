@@ -252,9 +252,9 @@
 </head>
 <body>
 
-<header class="nav" id="top">
+<header class="nav">
   <div class="wrap nav-inner">
-    <a class="nav-logo" href="#top" aria-label="One Upper Austria – home"><img src="assets/logo.png" alt="One Upper Austria" width="200" height="122"></a>
+    <a class="nav-logo" href="#" aria-label="One Upper Austria – home"><img src="assets/logo.png" alt="One Upper Austria" width="200" height="122"></a>
     <ul class="nav-links" id="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#goals">Goals</a></li>
@@ -523,6 +523,13 @@
   // Sticky header + mobile menu
   const nav = document.querySelector('header.nav');
   const menuBtn = nav.querySelector('.menu-btn');
+  nav.querySelector('.nav-logo').addEventListener('click', e => {
+    e.preventDefault();
+    nav.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    history.replaceState(null, '', location.pathname + location.search);
+    scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  });
   addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 8), { passive: true });
   menuBtn.addEventListener('click', () => {
     const open = nav.classList.toggle('open');
