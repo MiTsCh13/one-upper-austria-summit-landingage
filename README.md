@@ -7,3 +7,4 @@ Open `index.html` directly in a browser or serve the folder with any static host
 - `index.html` – page, styles and scripts (inline)
 - `assets/logo.svg` – summit logo
 - `assets/favicon.svg`, `assets/apple-touch-icon.png` – favicon built from the logo's "O" mark
+- `assets/organisations/` – logos of participating organisations (trimmed, max. 240 px high)

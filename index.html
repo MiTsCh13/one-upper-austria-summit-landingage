@@ -56,7 +56,7 @@
 
     /* Buttons */
     .btn {
-      display: inline-flex; align-items: center; gap: 10px;
+      display: inline-flex; white-space: nowrap; align-items: center; gap: 10px;
       padding: 15px 28px; border-radius: 999px; border: 2px solid var(--red);
       font: 600 16px/1 Poppins, sans-serif; text-decoration: none; cursor: pointer;
       transition: background .2s, color .2s, transform .2s;
@@ -187,6 +187,24 @@
     .steps b { font-family: Poppins, sans-serif; color: var(--ink); display: block; margin-bottom: 6px; }
     .steps span { font-size: 15px; color: var(--muted); }
 
+    /* Organisations */
+    .orgs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 44px; }
+    .org {
+      display: grid; place-items: center; height: 150px; padding: 26px 32px;
+      background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+    }
+    .org:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: #d6d6d6; }
+    .org img { max-width: 100%; max-height: 92px; width: auto; height: auto; object-fit: contain; }
+    .org.wide img { max-height: 36px; }
+    .org.square img { max-height: 108px; }
+    .org.more {
+      border: 2px dashed #d0d0d0; background: transparent; text-align: center; text-decoration: none;
+      font: 600 16px/1.4 Poppins, sans-serif; color: var(--ink);
+    }
+    .org.more span { display: block; font: 400 14px Inter, sans-serif; color: var(--muted); margin-top: 4px; }
+    .org.more:hover { border-color: var(--red); color: var(--red); box-shadow: none; }
+
     /* CTA */
     .cta-box {
       position: relative; background: var(--red-tint); border-radius: 22px; padding: 56px;
@@ -213,6 +231,10 @@
     }
 
     /* Responsive */
+    @media (max-width: 1100px) {
+      .nav-links { gap: 18px; }
+      .nav-links a { font-size: 14px; }
+    }
     @media (max-width: 1020px) {
       .usp-grid { grid-template-columns: repeat(2, 1fr); }
       .steps { grid-template-columns: repeat(2, 1fr); }
@@ -235,6 +257,7 @@
       .fact:nth-child(3) { border-left: 0; }
       .fact:nth-child(n+3) { border-top: 1px solid var(--line); }
       .cards { grid-template-columns: 1fr; }
+      .orgs { grid-template-columns: repeat(2, 1fr); }
       .cta-box { padding: 36px 26px; }
     }
     @media (max-width: 560px) {
@@ -244,6 +267,9 @@
       .fact + .fact { border-left: 0; border-top: 1px solid var(--line); }
       .fact { padding: 16px 4px; }
       .usp-grid, .groups, .steps { grid-template-columns: 1fr; }
+      .orgs { gap: 12px; }
+      .org { height: 120px; padding: 16px; }
+      .org.square img { max-height: 92px; }
       .steps li::after { display: none; }
       .card { flex-direction: column; padding: 24px; }
       .countdown { gap: 8px; }
@@ -263,6 +289,7 @@
       <li><a href="#programme">Programme</a></li>
       <li><a href="#venue">Venue</a></li>
       <li><a href="#partners">Partners</a></li>
+      <li><a href="#organisations">Organisations</a></li>
     </ul>
     <a class="btn btn-primary nav-cta" href="#join">Join as partner</a>
     <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
@@ -494,8 +521,25 @@
     </div>
   </section>
 
+  <!-- Organisations -->
+  <section class="bg-alt" id="organisations" aria-labelledby="orgs-title">
+    <div class="wrap">
+      <div class="eyebrow reveal">Organisations</div>
+      <h2 id="orgs-title" class="reveal">Shaped together by <span class="red">Upper Austria's ecosystem</span></h2>
+      <p class="lead reveal" style="margin-top:20px">These organisations are already at the table – and more are joining.</p>
+      <div class="orgs">
+        <a class="org reveal" href="https://startupsupperaustria.at" target="_blank" rel="noopener"><img src="assets/organisations/startups-upper-austria.webp" alt="Startups Upper Austria" width="444" height="240" loading="lazy"></a>
+        <a class="org reveal" href="https://www.jku.at/lit-open-innovation-center/" target="_blank" rel="noopener"><img src="assets/organisations/jku-lit-oic.webp" alt="JKU LIT Open Innovation Center" width="230" height="155" loading="lazy"></a>
+        <a class="org reveal" href="https://innovation.linz.at/" target="_blank" rel="noopener"><img src="assets/organisations/innovationshauptplatz-linz.webp" alt="Innovationshauptplatz Linz" width="770" height="240" loading="lazy"></a>
+        <a class="org wide reveal" href="https://tabakfabrik-linz.at/" target="_blank" rel="noopener"><img src="assets/organisations/tabakfabrik-linz.webp" alt="Tabakfabrik Linz" width="1840" height="153" loading="lazy"></a>
+        <a class="org square reveal" href="https://youngaileaderslinz.at/" target="_blank" rel="noopener"><img src="assets/organisations/young-ai-leaders-linz.webp" alt="Young AI Leaders Community Linz Hub" width="286" height="240" loading="lazy"></a>
+        <a class="org more reveal" href="#join">Your organisation?<span>Take your place at the table</span></a>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
-  <section id="join" aria-labelledby="join-title" style="padding-top:0">
+  <section id="join" aria-labelledby="join-title">
     <div class="wrap">
       <div class="cta-box reveal">
         <div>
