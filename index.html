@@ -198,6 +198,7 @@
     .org img { max-width: 100%; max-height: 92px; width: auto; height: auto; object-fit: contain; }
     .org.wide img { max-height: 36px; }
     .org.square img { max-height: 108px; }
+    .org.mid img { max-height: 54px; }
     .org.more {
       border: 2px dashed #d0d0d0; background: transparent; text-align: center; text-decoration: none;
       font: 600 16px/1.4 Poppins, sans-serif; color: var(--ink);
@@ -258,6 +259,7 @@
       .fact:nth-child(n+3) { border-top: 1px solid var(--line); }
       .cards { grid-template-columns: 1fr; }
       .orgs { grid-template-columns: repeat(2, 1fr); }
+      .org.more:nth-child(odd) { grid-column: 1 / -1; }
       .cta-box { padding: 36px 26px; }
     }
     @media (max-width: 560px) {
@@ -533,6 +535,9 @@
         <a class="org reveal" href="https://innovation.linz.at/" target="_blank" rel="noopener"><img src="assets/organisations/innovationshauptplatz-linz.webp" alt="Innovationshauptplatz Linz" width="770" height="240" loading="lazy"></a>
         <a class="org wide reveal" href="https://tabakfabrik-linz.at/" target="_blank" rel="noopener"><img src="assets/organisations/tabakfabrik-linz.webp" alt="Tabakfabrik Linz" width="1840" height="153" loading="lazy"></a>
         <a class="org square reveal" href="https://youngaileaderslinz.at/" target="_blank" rel="noopener"><img src="assets/organisations/young-ai-leaders-linz.webp" alt="Young AI Leaders Community Linz Hub" width="286" height="240" loading="lazy"></a>
+        <a class="org mid reveal" href="https://www.tech2b.at/" target="_blank" rel="noopener"><img src="assets/organisations/tech2b.webp" alt="tech2b" width="190" height="59" loading="lazy"></a>
+        <a class="org reveal" href="https://fh-ooe.at/" target="_blank" rel="noopener"><img src="assets/organisations/fh-ooe.webp" alt="FH Oberösterreich – University of Applied Sciences Upper Austria" width="882" height="240" loading="lazy"></a>
+        <a class="org mid reveal" href="http://acadx.at" target="_blank" rel="noopener"><img src="assets/organisations/acadx.webp" alt="AcadX" width="234" height="62" loading="lazy"></a>
         <a class="org more reveal" href="#join">Your organisation?<span>Take your place at the table</span></a>
       </div>
     </div>
