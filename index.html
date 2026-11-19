@@ -225,6 +225,52 @@
     .foot img { height: 42px; width: auto; }
     .foot .slogan { font: 700 13px Poppins, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--red); }
 
+    /* Interest form */
+    dialog.form-dialog {
+      width: min(680px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0;
+      border: 0; border-radius: 20px; background: var(--bg); color: var(--text);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .25);
+    }
+    dialog.form-dialog::backdrop { background: rgba(17, 17, 17, .55); backdrop-filter: blur(3px); }
+    .form-head { position: sticky; top: 0; z-index: 1; background: var(--bg); padding: 28px 32px 18px; border-bottom: 1px solid var(--line); }
+    .form-head h2 { font-size: 26px; padding-right: 40px; }
+    .form-head p { margin: 8px 0 0; font-size: 15px; color: var(--muted); }
+    .form-close {
+      position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; border-radius: 50%;
+      border: 0; background: var(--bg-alt); cursor: pointer; display: grid; place-items: center; color: var(--ink);
+    }
+    .form-close:hover { background: var(--red-tint); color: var(--red); }
+    .form-body { padding: 24px 32px 32px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.full, fieldset.field { grid-column: 1 / -1; }
+    .field label, .field legend { font: 600 14px Poppins, sans-serif; color: var(--ink); }
+    .field .opt { font: 400 13px Inter, sans-serif; color: var(--muted); }
+    .field input, .field select, .field textarea {
+      font: 400 16px/1.4 Inter, sans-serif; color: var(--ink); background: #fff;
+      border: 1.5px solid #d6d6d6; border-radius: 10px; padding: 11px 13px; width: 100%;
+    }
+    .field textarea { min-height: 96px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--red); box-shadow: 0 0 0 3px var(--red-tint); }
+    fieldset.field { border: 0; margin: 0; padding: 0; }
+    .checks { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; margin-top: 4px; }
+    .check { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; cursor: pointer; }
+    .check input { width: 18px; height: 18px; margin: 2px 0 0; flex: none; accent-color: var(--red); }
+    .consent { grid-column: 1 / -1; font-size: 14px; color: var(--muted); }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .form-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 24px; }
+    .form-actions .note { font-size: 13px; color: var(--muted); }
+    .btn[disabled] { opacity: .6; cursor: progress; transform: none; }
+    .form-error { display: none; margin-top: 16px; padding: 12px 14px; border-radius: 10px; background: var(--red-tint); color: var(--red-dark); font-size: 15px; }
+    .form-error.show { display: block; }
+    .form-done { display: none; padding: 48px 32px 40px; text-align: center; }
+    .form-done .tick { width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 50%; background: var(--red-tint); color: var(--red); display: grid; place-items: center; }
+    .form-done h2 { font-size: 26px; margin-bottom: 10px; }
+    .form-done p { color: var(--muted); max-width: 440px; margin: 0 auto 24px; }
+    dialog.done .form-head, dialog.done .form-body { display: none; }
+    dialog.done .form-done { display: block; }
+    body.modal-open { overflow: hidden; }
+
     /* Reveal */
     .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.in { opacity: 1; transform: none; }
@@ -280,6 +326,10 @@
       .countdown { gap: 8px; }
       .cd { min-width: 0; flex: 1; }
       .floor { grid-template-columns: 1fr; gap: 4px; }
+      .form-head { padding: 22px 20px 14px; }
+      .form-head h2 { font-size: 22px; }
+      .form-body { padding: 20px 20px 24px; }
+      .form-grid, .checks { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -296,7 +346,7 @@
       <li><a href="#partners">Partners</a></li>
       <li><a href="#organisations">Organisations</a></li>
     </ul>
-    <a class="btn btn-primary nav-cta" href="#join">Join as partner</a>
+    <a class="btn btn-primary nav-cta" href="#join" data-open-form>Join as partner</a>
     <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -331,7 +381,7 @@
           <h1 id="hero-title">One Upper Austria <span class="red">Summit</span></h1>
           <p class="sub">The new annual startup and innovation summit, shaped together by Upper Austria's ecosystem – with your organization at the table!</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#join">Confirm your interest
+            <a class="btn btn-primary" href="#join" data-open-form>Confirm your interest
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
             <a class="btn btn-ghost" href="#about">Learn more</a>
@@ -543,7 +593,7 @@
         <a class="org mid reveal" href="http://acadx.at" target="_blank" rel="noopener"><img src="assets/organisations/acadx.webp" alt="AcadX" width="234" height="62" loading="lazy"></a>
         <a class="org square reveal" href="https://www.wko.at/ooe/jw/junge-wirtschaft-oberoesterreich" target="_blank" rel="noopener"><img src="assets/organisations/junge-wirtschaft-ooe.webp" alt="Junge Wirtschaft Oberösterreich" width="225" height="225" loading="lazy"></a>
         <a class="org square reveal" href="https://www.softwarepark-hagenberg.at/" target="_blank" rel="noopener"><img src="assets/organisations/softwarepark-hagenberg.webp" alt="Softwarepark Hagenberg" width="232" height="240" loading="lazy"></a>
-        <a class="org more reveal" href="#join">Your organisation?<span>Take your place at the table</span></a>
+        <a class="org more reveal" href="#join" data-open-form>Your organisation?<span>Take your place at the table</span></a>
       </div>
     </div>
   </section>
@@ -557,7 +607,7 @@
           <p>Let's discuss your priorities and contribution. Confirm your interest and nominate a contact person to help shape the organising committee's kickoff meeting.</p>
         </div>
         <div class="cta-actions">
-          <a class="btn btn-primary" href="mailto:info@startupsupperaustria.at?subject=One%20Upper%20Austria%20Summit%20%E2%80%93%20Partner%20interest">Confirm your interest
+          <a class="btn btn-primary" href="mailto:info@startupsupperaustria.at?subject=One%20Upper%20Austria%20Summit%20%E2%80%93%20Partner%20interest" data-open-form>Confirm your interest
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
           <div class="cta-contact">Contact: <b>Mathias Fink</b><br>Startups Upper Austria</div>
@@ -566,6 +616,82 @@
     </div>
   </section>
 </main>
+
+<dialog class="form-dialog" id="interest-dialog" aria-labelledby="form-title">
+  <div class="form-head">
+    <h2 id="form-title">Confirm your interest</h2>
+    <p>Tell us a little about your organisation. We'll get back to you about the organising committee's kickoff meeting.</p>
+    <button class="form-close" type="button" aria-label="Close form" data-close-form>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <form class="form-body" id="interest-form" novalidate>
+    <input type="hidden" name="_subject" value="One Upper Austria Summit – Partner interest">
+    <input type="hidden" name="_template" value="table">
+    <div class="hp" aria-hidden="true"><label>Leave empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+    <div class="form-grid">
+      <div class="field full">
+        <label for="f-org">Organisation *</label>
+        <input id="f-org" name="Organisation" required autocomplete="organization">
+      </div>
+      <div class="field full">
+        <label for="f-type">Type of organisation *</label>
+        <select id="f-type" name="Type of organisation" required>
+          <option value="">Please select …</option>
+          <option>Startup organisation / network</option>
+          <option>Research &amp; education</option>
+          <option>Industry &amp; business</option>
+          <option>Capital &amp; funding</option>
+          <option>Public institution</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-name">Contact person *</label>
+        <input id="f-name" name="Contact person" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="f-role">Role / position <span class="opt">(optional)</span></label>
+        <input id="f-role" name="Role" autocomplete="organization-title">
+      </div>
+      <div class="field">
+        <label for="f-email">Email *</label>
+        <input id="f-email" type="email" name="email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="f-phone">Phone <span class="opt">(optional)</span></label>
+        <input id="f-phone" type="tel" name="Phone" autocomplete="tel">
+      </div>
+      <fieldset class="field">
+        <legend>How would you like to contribute? <span class="opt">(optional, multiple choice)</span></legend>
+        <div class="checks">
+          <label class="check"><input type="checkbox" name="Contribution" value="Curate programme slots"> Curate programme slots</label>
+          <label class="check"><input type="checkbox" name="Contribution" value="Speakers & expertise"> Speakers &amp; expertise</label>
+          <label class="check"><input type="checkbox" name="Contribution" value="Communication & community reach"> Communication &amp; community reach</label>
+          <label class="check"><input type="checkbox" name="Contribution" value="Venue, infrastructure or staff"> Venue, infrastructure or staff</label>
+          <label class="check"><input type="checkbox" name="Contribution" value="Financial contribution"> Financial contribution</label>
+          <label class="check"><input type="checkbox" name="Contribution" value="Not sure yet – let's talk"> Not sure yet – let's talk</label>
+        </div>
+      </fieldset>
+      <div class="field full">
+        <label for="f-msg">Your priorities or questions <span class="opt">(optional)</span></label>
+        <textarea id="f-msg" name="Message"></textarea>
+      </div>
+      <label class="check consent"><input type="checkbox" name="Consent" value="Yes" required> I agree that Startups Upper Austria may store my details and contact me about the One Upper Austria Summit. *</label>
+    </div>
+    <div class="form-error" id="form-error" role="alert"></div>
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Send <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <span class="note">* required</span>
+    </div>
+  </form>
+  <div class="form-done" role="status">
+    <div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h2>Thank you!</h2>
+    <p>We've received your details and will get in touch with you soon.</p>
+    <button class="btn btn-ghost" type="button" data-close-form>Close</button>
+  </div>
+</dialog>
 
 <footer>
   <div class="wrap foot">
@@ -595,6 +721,53 @@
     nav.classList.remove('open');
     menuBtn.setAttribute('aria-expanded', 'false');
   }));
+
+  // Interest form: opens in a dialog, sent via FormSubmit (https://formsubmit.co)
+  const FORM_ENDPOINT = 'https://formsubmit.co/ajax/info@startupsupperaustria.at';
+  const dialog = document.getElementById('interest-dialog');
+  const form = document.getElementById('interest-form');
+  const formError = document.getElementById('form-error');
+  const submitBtn = form.querySelector('[type="submit"]');
+  if (typeof dialog.showModal === 'function') {
+    document.querySelectorAll('[data-open-form]').forEach(el => el.addEventListener('click', e => {
+      e.preventDefault();
+      nav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      dialog.classList.remove('done');
+      dialog.showModal();
+      document.body.classList.add('modal-open');
+    }));
+    dialog.querySelectorAll('[data-close-form]').forEach(el => el.addEventListener('click', () => dialog.close()));
+    dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+    dialog.addEventListener('close', () => document.body.classList.remove('modal-open'));
+  }
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    formError.classList.remove('show');
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    const data = {};
+    new FormData(form).forEach((v, k) => { data[k] = data[k] ? data[k] + ', ' + v : v; });
+    submitBtn.disabled = true;
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || String(json.success) !== 'true') throw new Error(json.message || res.status);
+      form.reset();
+      dialog.classList.add('done');
+    } catch (err) {
+      formError.innerHTML = 'Sorry, your message could not be sent. Please try again or email us at <a href="mailto:info@startupsupperaustria.at">info@startupsupperaustria.at</a>.';
+      formError.classList.add('show');
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
 
   // Countdown to 19 March 2027, 09:00 Vienna time (CET)
   const target = new Date('2027-03-19T09:00:00+01:00').getTime();
